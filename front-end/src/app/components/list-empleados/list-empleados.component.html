@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="title">
+    <h4>Lista de empleados</h4>
+    <button type="button" class="btn btn-primary" routerLink="/add">Nuevo empleado</button>
+
+  </div>
+
+    
+
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Fecha de alta</th>
+            <th scope="col">Obra</th>
+            <th scope="col">DNI</th>
+            <th scope="col">Numero SS</th>
+            <th scope="col">herramientas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listEmpleados" class="table-secondary">
+            
+            <td> {{ item.name }}</td>
+            <td>{{ item.apellidos }}</td>
+            <td>{{ item.fechaDalta }}</td>
+            <td> {{ item.obra }}</td>
+            <td>{{ item.dni }}</td>
+            <td> {{ item.numeroSS}}</td>
+            <td> {{ item.herramientas}}</td>
+            <td>
+              <button type="button" class="btn btn-primary btn-sm ms-2" routerLink="/edit/{{item.id}}">Editar</button>
+              <button type="button" class="btn btn-primary btn-sm ms-4">Borrar</button>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+</div>
