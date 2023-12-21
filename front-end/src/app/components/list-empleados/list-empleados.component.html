@@ -1,4 +1,6 @@
-<div class="container">
+
+<app-progress-bar *ngIf="loading"></app-progress-bar>
+<div *ngIf="!loading" class="container">
   <div class="title">
     <h4>Lista de empleados</h4>
     <button type="button" class="btn btn-primary" routerLink="/add">Nuevo empleado</button>
@@ -31,7 +33,7 @@
             <td> {{ item.herramientas}}</td>
             <td>
               <button type="button" class="btn btn-primary btn-sm ms-2" routerLink="/edit/{{item.id}}">Editar</button>
-              <button type="button" class="btn btn-primary btn-sm ms-4">Borrar</button>
+              <button (click)="deleteEmpleado(item.id!)" type="button" class="btn btn-primary btn-sm ms-4">Borrar</button>
             </td>
           </tr>
           

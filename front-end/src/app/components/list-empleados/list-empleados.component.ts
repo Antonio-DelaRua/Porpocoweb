@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Empleado } from 'src/app/interfaces/products';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-list-empleados',
@@ -7,14 +9,33 @@ import { Empleado } from 'src/app/interfaces/products';
   styleUrls: ['./list-empleados.component.css']
 })
 export class ListEmpleadosComponent implements OnInit {
-  listEmpleados: Empleado[] = [
-    {id: 1,name: 'paco', apellidos: 'elflaco', fechaDalta: '12-12-23', obra: 'estepona', dni: '79020384u', numeroSS: 83483477548, herramientas: 4 },
-    {id: 2,name: 'leti', apellidos: 'labella', fechaDalta: '11-12-23', obra: 'malaga', dni: '790430384u', numeroSS: 8343477548, herramientas: 0 }
-  ]
+  listEmpleados: Empleado[] = []
+  loading: boolean = false
 
-  constructor() { }
+  constructor( private _productService: ProductService) { }
 
   ngOnInit(): void {
+    this.getListProducts();
+
+  }
+
+  getListProducts(){
+    this.loading = true;
+
+    this._productService.getEmpleados().subscribe((data : Empleado[])=>{
+    this.listEmpleados = data;
+    this.loading = false;
+
+    })
+  }
+
+  deleteEmpleado(id: number){
+    this.loading = true;
+    this._productService.deleteEmpleado(id).subscribe(() => {
+    this.getListProducts();
+    
+    
+    })
   }
 
 }
