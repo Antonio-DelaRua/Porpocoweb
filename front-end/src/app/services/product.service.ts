@@ -25,6 +25,17 @@ export class ProductService {
     return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}${id}`)
   }
 
+  saveEmpleado(product: Empleado): Observable<void>{
+    return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}`, product)
+  }
+
+  getEmpleado(id: number): Observable<Empleado>{
+    return this.http.get<Empleado>(`${this.myAppUrl}${this.myApiUrl}${id}`);
+  }
+
+  updateEmpleado(id: number, product: Empleado): Observable<void>{
+    return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}${id}`, product);
+  }
 
 
 }
